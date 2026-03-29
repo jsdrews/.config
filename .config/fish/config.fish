@@ -71,6 +71,13 @@ alias a="direnv allow"
 set -gx PYRC "$HOME/.config/.pythonrc"
 alias pyrc="code $PYRC"
 alias py="python -i $PYRC"
+function dev-shell
+    set -lx DEV_SHELL 1
+    fish
+end
+if set -q DEV_SHELL && test -f "$PWD/.venv/bin/activate.fish"
+    source "$PWD/.venv/bin/activate.fish"
+end
 
 # LOCAL (NO COMMIT)
 if test -f "$HOME/.config/fish/local_config.fish"
